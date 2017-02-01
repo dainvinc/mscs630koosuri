@@ -8,7 +8,7 @@
  *This file contains the declaration of a ConvertStringToInteger
  *which converts a given String into certain integers.
  */
- java.util.HashMap;
+import java.util.HashMap;
 
 public class ConvertStringToInteger {
   public int[] str2int(String plainText) {
@@ -48,6 +48,7 @@ public class ConvertStringToInteger {
     for(int i=0; i<pText.length; i++) {
       char cText = pText[i];
       cipher[i] = map.get(cText);
+      System.out.print(cipher[i]+ " ");
     }
 
     return cipher;
@@ -55,6 +56,6 @@ public class ConvertStringToInteger {
 
   public static void main(String[] args) {
     ConvertStringToInteger s2i = new ConvertStringToInteger();
-    s2i.str2int("Hello World!");
+    s2i.str2int("Hello World");
   }
 }
