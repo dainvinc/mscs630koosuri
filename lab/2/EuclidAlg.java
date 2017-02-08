@@ -1,3 +1,13 @@
+/**
+ * file: EuclidAlg.java
+ * author: Vishal Koosuri
+ * course: MSCS 630
+ * lab: 2-part1
+ *due date: February 8
+ *
+ *This file demonstrates the simple Euclid Algorithm
+ *which is used to generate GCD of two numbers.
+ */
 import java.util.*;
 
 public class EuclidAlg {
