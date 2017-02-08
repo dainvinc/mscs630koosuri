@@ -40,6 +40,5 @@ public class EuclidAlg {
     long num2 = input.nextLong();
     
     ea.euclidAlg(num1, num2);
-    ea.euclidAlg(75, 148);
   }
 }
