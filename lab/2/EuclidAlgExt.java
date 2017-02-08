@@ -47,7 +47,7 @@ public class EuclidAlgExt {
     return r;
   }
   public static void main(String[] args) {
-    Test s = new Test();
+    EuclidAlgExt e = new EuclidAlgExt();
     long input1 = 0;
     long input2 = 0;
     Scanner sc = new Scanner(System.in);
@@ -59,6 +59,6 @@ public class EuclidAlgExt {
     } else {
       System.out.println("Invalid input!");
     }
-    s.euclidAlg(input1, input2);
+    e.euclidAlgExt(input1, input2);
   }
 }
