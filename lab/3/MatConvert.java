@@ -20,11 +20,9 @@ public class MatConvert {
   public int[][] getHexMatP(char s, String p) {
     int[] set = new int[len];
     String str = p;
-    char c = '~';
     char[] ch = new char[64];
     for(int i=0; i<p.length(); i++) {
       ch[i] = p.charAt(i);
-      //System.out.println(ch[i]);
     }
     int n =0;
     int k=0;
@@ -36,7 +34,6 @@ public class MatConvert {
             mat[n][j] = (int)ch[k];
             if(ch[k] == 0)
               mat[n][j] = (int)s;
-            //System.out.println("--------"+mat[n][j]);
             n++;
             k++;
           }
@@ -54,10 +51,12 @@ public class MatConvert {
     System.out.println("Enter a string: ");
     String input = s.nextLine();
     len = (int) Math.ceil((double)input.length()/16);
+    System.out.println("Enter a character that you want to use to fill up:");
+    char c = s.next().charAt(0);
     if(input.equals("")) {
       System.out.println("You just entered nothing!");
     } else {
-      m.getHexMatP('~', input);
+      m.getHexMatP(c, input);
     }
   }
 }
