@@ -1,3 +1,14 @@
+/**
+ * file: MatConvert.java
+ * author: Vishal Koosuri
+ * course: MSCS 630
+ * lab: 1
+ * version: 1.0
+ *due date: March 1
+ *
+ *This file converts the Text input into a
+ *matrix form in Hexadecimal format
+ */
 import java.util.Scanner;
 
 public class MatConvert {

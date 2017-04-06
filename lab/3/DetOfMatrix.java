@@ -1,3 +1,13 @@
+/**
+ * file: DetOfMatrix.java
+ * author: Vishal Koosuri
+ * course: MSCS 630
+ * lab: 3
+ * version: 1.0
+ *due date: March 1
+ *
+ *This file determines the Determinent of a Matrix
+ */
 import java.util.Scanner;
 
 public class DetOfMatrix {
