@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class AESCipher {
   public static int len = 0;
-  public static int[] w = new int[4];
+  public static int roundNumber = 0;
+  //public static int[] newW = new int[4];
+  //public static int[] w = new int[4];
   public static int[][] matK = new int[4][4];
   public static int[][] matW = new int[4][44];
   public static int[] ki = new int[4];
@@ -79,49 +81,100 @@ public class AESCipher {
   public static void printMat() {
     for(int p=0; p<4; p++) {
       for(int q=0; q<4; q++) {
-        w[q] = matK[p][q];
-        //System.out.println("((((("+convertToHex(w[q]));
+        wi[q] = matK[p][q];
+        //System.out.println("Matk is: ");
         System.out.print(convertToHex(matK[q][p]) +" ");
       }
       System.out.println();
     }
   }
   
-  public static void printKi(int j) {
+  public static void printK(int j) {
     for(int i=0; i<ki.length; i++) {
       ki[i] = matK[i][j];
       System.out.println(convertToHex(ki[i]));
     }
-    printWi(j);
+    printW(roundNumber);
   }
   
-  public static void printWi(int i) {
-    for(int j=0; j<wi.length; j++) {
-      wi[j] = ki[j];
-      matW[j][i] = wi[j];
-      //System.out.println(convertToHex(wi[j]));
-      System.out.print(convertToHex(matW[j][i])+" ");
+  public static void printW(int i) {
+    //int[] newW = new int[4];
+    int temp = 0;
+    for(int p=i; p<4; p++) {
+      for(int j=0; j<4; j++) {
+        try {
+          wi[j] = ki[j];
+          matW[p][j] = wi[j];
+          //System.out.println(convertToHex(wi[j]));
+        }catch(ArrayIndexOutOfBoundsException a) {} 
+      }
     }
-    //System.out.print(convertToHex(matW[j][i])+"****");
+      for(int p=i; p<4; p++) {
+        for(int j=4; j<44; j++) {
+        if(j%4 != 0) {
+          //System.out.println("---"+j);
+          roundNumber++;
+          matW[p][j] = xorW(matW[p][j-4],matW[p][j-1]);
+          //System.out.println("---"+convertToHex(wi[p]));
+        } else{
+          int[] newW = new int[4];
+          int temp1 = ki[0];
+          //System.out.println("Temp is "+temp);
+          for(int a=0; a<newW.length-1; a++) 
+           newW[a] = matW[a][j-1];
+           
+          for(int a=0; a<newW.length-1; a++) {
+          //System.out.println("%%%%%%%%%%"+convertToHex(temp));
+            newW[a] = matW[a][j-1];
+          }
+          newW[newW.length-1] = temp1;      
+          for(int l=0; l<4; l++) {
+            String s4="";
+            s4 = SBox[newW[l]/10][newW[l]%10];
+            newW[l] = Integer.parseInt(s4, 16);
+            System.out.println("---"+convertToHex(newW[l]));
+            newW[0] = xorW(Integer.parseInt(aesRCon(j), 16), newW[0]);
+            for(int q=0; q<4; q++)
+              matW[p][j] = xorW(matW[p][j-4], newW[q]);
+          }
+        }
+        // matW[p][j] = xorW(matW[p][j-4], ki[p]);
+        // System.out.print(convertToHex(matW[p][j])+"//"+p +" "+j);
+      }
+    }
+  }
+  
+  public static String aesRCon(int num) {
+    return RCon[0][num/4];
+  }
+  
+  public static int xorW(int num1, int num2) {
+    int res = num1^num2;
+    //System.out.println("____"+convertToHex(res));
+    return res;
   }
   
   public static void main(String[] args) {
     AESCipher aes = new AESCipher();
     Scanner s = new Scanner(System.in);
     System.out.println("Enter a string: ");
-    String input = s.nextLine();
-    len = (int) Math.ceil((double)input.length()/16);
+    String inewWut = s.nextLine();
+    len = (int) Math.ceil((double)inewWut.length()/16);
     System.out.println("Enter a character that you want to use to fill up:");
     char c = s.next().charAt(0);
-    aes.getHexMatP(c, input);
-    for(int i=0; i<4; i++)
-      printKi(i);
+    aes.getHexMatP(c, inewWut);
+    for(int i=0; i<4; i++) {
+      printK(i);
+      //xorW(i);
+    }
     // for(int i=0; i<4; i++)
-    //   printWi(i);
+    //   printW(i);
     //printTestMat();
     System.out.println();
     for(int i=0; i<4; i++) {
       for(int j=0; j<44; j++) {
+        //if(j%16 == 0)
+        //System.out.println();
         System.out.print(convertToHex(matW[i][j])+" ");
       }
       System.out.println();
