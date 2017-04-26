@@ -1,0 +1,23 @@
+9 pts
+
+Vishal,
+
+About your programs...
+
+Functionality
+
+- All programs function correctly as required.
+
+- The output does not follow instructions given by program. 
+
+Please make sure you read the problems well; follow instructions.
+
+
+Style Check
+
+- All programs follow the style guidelines. Good job!
+
+
+Peace,
+
+- Dr. Rivas
